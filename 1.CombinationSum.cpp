@@ -21,8 +21,23 @@ public:
     {
         ans.clear();
         vector<int> temp;
-        solve(0, candidates, temp, target);
+        solve2(0, candidates, temp, target);
         return ans;
+    }
+    void solve2(int si,vector<int>&nums,vector<int>&temp,int target){
+                if (target == 0)
+        {
+            ans.push_back(temp);
+            return;
+        }
+        if (target < 0)
+            return;
+
+        for(int i=si;i<nums.size();i++){
+            temp.push_back(nums[i]);
+            solve(i,nums,temp,target-nums[i]);
+            temp.pop_back();
+        }
     }
     void solve(int i, vector<int> &nums, vector<int> &temp, int target)
     {
